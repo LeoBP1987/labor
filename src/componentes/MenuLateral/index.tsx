@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import ItemMenu from "./ItemMenu";
-import { useArrastarMenu } from "../../hooks/useArrastarMenu";
 import useLogoff from "../../hooks/useLogoff";
 import { useChamaModal } from "../../hooks/useChamaModal";
 import { useGetClique } from "../../context/GetClique";
 import { useGetQuantidades } from "../../hooks/useGetQuantidades";
+import { useState } from "react";
 
 const MenuAside = styled.aside<{ $altura: number }>`
   @media screen and (max-width: 800px) {
@@ -25,6 +25,7 @@ const MenuAside = styled.aside<{ $altura: number }>`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    touch-action: none;
   }
 `;
 
@@ -90,18 +91,48 @@ const MenuLateral = () => {
 
   const { menuAtivo, setMenuAtivo } = useGetClique();
   const { logoff } = useLogoff();
-  const {
-    aoIniciarArrasto,
-    aoArrastar,
-    aoFinalizarArrasto,
-    aoFecharMenu,
-    setDistanciaArrastada,
-    arrastando,
-    distanciaArrastada,
-    concluido,
-  } = useArrastarMenu();
   const { quantidades } = useGetQuantidades();
   const { aoChamarModal } = useChamaModal();
+  const [posicaoY, setPosicaoY] = useState(0);
+  const [distanciaArrastada, setDistanciaArrastada] = useState(0);
+  const [arrastando, setArrastando] = useState(false);
+  const [menuMobileAtivo, setMenuMobileAtivo] = useState(false);
+  const [concluido, setConcluido] = useState('none');
+
+  const aoIniciarArrasto = (e: React.TouchEvent<HTMLElement>) => {
+    if (!menuMobileAtivo) {
+      setPosicaoY(e.touches[0].clientY);
+      setArrastando(true);
+    }
+};
+
+const aoArrastar = (e: React.TouchEvent<HTMLElement>) => {
+  const posicaoAtual = e.touches[0].clientY;
+  const distancia = posicaoAtual - posicaoY;
+
+  setDistanciaArrastada(distancia);
+    
+};
+
+const aoFinalizarArrasto = () => {
+    if (distanciaArrastada < 200) {
+        setDistanciaArrastada(0);
+    } else {
+        setDistanciaArrastada(500);
+        setMenuMobileAtivo(true);
+        setConcluido('flex');
+    }
+    setArrastando(false);
+};
+
+const aoFecharMenu = (evento: React.MouseEvent<HTMLButtonElement>) => {
+    if (evento.clientY > 630 || evento.clientX < 60 || evento.clientX > 360) {
+        setPosicaoY(0);
+        setDistanciaArrastada(0);
+        setMenuMobileAtivo(false);
+        setConcluido('none');
+    }
+};
 
   const mudaAtivo = (item: string) => {
     setMenuAtivo(item)
@@ -113,8 +144,10 @@ const MenuLateral = () => {
     mudaAtivo("None");
   }
 
+
   return (
     <MenuAside
+      id="menu-aside"
       onTouchStart={aoIniciarArrasto}
       onTouchMove={aoArrastar}
       onTouchEnd={aoFinalizarArrasto}
@@ -130,6 +163,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={quantidades.tarefasHoje} 
                   link="/" 
                   onClick={() => mudaAtivo("Hoje")}
+                  distanciaArrastada={distanciaArrastada}
           >
             Hoje
           </ItemMenu>
@@ -139,6 +173,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={quantidades.tarefasSemana}
                   link="/semana"
                   onClick={() => mudaAtivo("Semana")}
+                  distanciaArrastada={distanciaArrastada}
           >
             Semana
           </ItemMenu>
@@ -148,6 +183,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={quantidades.tarefasPilha} 
                   link="/pilha"
                   onClick={() => mudaAtivo("Pilha")}
+                  distanciaArrastada={distanciaArrastada}
           >
             Pilha
           </ItemMenu>
@@ -157,6 +193,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={quantidades.repeticoes}
                   link="/repeticoes"
                   onClick={() => mudaAtivo("Repeticao")}
+                  distanciaArrastada={distanciaArrastada}
           >
             Repetições
           </ItemMenu>
@@ -168,6 +205,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={null} 
                   link="/agenda"
                   onClick={() => setDistanciaArrastada(0)}
+                  distanciaArrastada={distanciaArrastada}
           >
             Agenda
           </ItemMenu>
@@ -177,6 +215,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={null} 
                   link="#" 
                   onClick={() => aoClicarNovaTarefa()}
+                  distanciaArrastada={distanciaArrastada}
           >
             Nova Tarefa
           </ItemMenu>
@@ -186,6 +225,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={null} 
                   link="/montarsemana"
                   onClick={() => setDistanciaArrastada(0)}
+                  distanciaArrastada={distanciaArrastada}
           >
             Montar Semana
           </ItemMenu>
@@ -195,6 +235,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={null} 
                   link="/configuracoes"
                   onClick={() => setDistanciaArrastada(0)}
+                  distanciaArrastada={distanciaArrastada}
           >
             Configurações
           </ItemMenu>
@@ -206,6 +247,7 @@ const MenuLateral = () => {
                   quantidadeTarefa={null} 
                   link="/login" 
                   onClick={() => logoff()}
+                  distanciaArrastada={distanciaArrastada}
           >
             Sair
           </ItemMenu>

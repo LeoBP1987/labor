@@ -1,7 +1,6 @@
 import { ReactElement } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { useArrastarMenu } from "../../../hooks/useArrastarMenu"
 
 interface ItemMenuProps {
     children: ReactElement | string
@@ -10,12 +9,13 @@ interface ItemMenuProps {
     fixo: number | null
     link: string
     onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+    distanciaArrastada?: number | null;
 }
 
 const corItemPadrao = ( fixo: number | null ) => fixo !== null && fixo >= 0 ? '#FFF' : '#F3F1FE';
 const corItemPadraoMobile = ( fixo: number | null ) => fixo !== null && fixo >= 0 ? 'rgba(204, 204, 204, 0.6)' : 'var(--gradiente-terciario)';
 
-const ItemLi = styled.li<{ $ativo:boolean; $quantidadeTarefa?:number | null; $altura:number; $fixo:number | null }>`
+const ItemLi = styled.li<{ $ativo:boolean; $quantidadeTarefa?:number | null; $altura?:number | null; $fixo:number | null }>`
     background: ${props => (props.$ativo ? '#E6E3FB' : corItemPadrao(props.$fixo))};
     list-style: none;
     padding: 8px 12px;
@@ -54,13 +54,11 @@ const ItemLinkEstilizado = styled(Link)`
 
 const ItemMenu = ( props: ItemMenuProps ) => {
 
-    const { distanciaArrastada } = useArrastarMenu();
-
     return(
         <ItemLi 
             $ativo={props.ativo} 
             $fixo={props.fixo}
-            $altura={distanciaArrastada}
+            $altura={props.distanciaArrastada}
         >
             <ItemLinkEstilizado to={props.link} onClick={props.onClick}>
                 {props.children}
