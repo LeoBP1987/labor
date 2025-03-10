@@ -16,14 +16,14 @@ const SectionEstilizado = styled.section`
     flex-direction: column;
     gap: 40px;
     @media screen and (max-width: 800px) {
-        margin: 15px 0;
+        margin: 20px 0;
         width: 100%;
         max-width: 100%;
         height: 525px;
         max-height: 525px;
         align-items: center;
         justify-content: center;
-        gap: 60px;
+        gap: 45px;
     }
 `
 
@@ -38,6 +38,7 @@ const DivEstilizado = styled.div`
     @media screen and (max-width: 800px) {
         margin: 0;
         width: 100%;
+        max-height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
