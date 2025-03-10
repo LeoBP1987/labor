@@ -3,7 +3,7 @@ import { useRepeticoes } from "../context/RepeticoesContext";
 import { getRepeticoes } from "../services/repeticoesServices";
 
 export const useGetRepeticoes = () => {
-    const { repeticoes, setRepeticoes, loading, setLoading, setCarregaRepeticao, carregaRepeticao } = useRepeticoes();
+    const { repeticoes, setRepeticoes, loading, setLoading } = useRepeticoes();
 
     useEffect(() => {
         const getRepeticoesData = async () => {
@@ -16,14 +16,13 @@ export const useGetRepeticoes = () => {
                 console.error('Erro ao buscar Repetições:', error);
             } finally {
                 setLoading(false);
-                setCarregaRepeticao(false);
             }
         };
 
-        if(carregaRepeticao) {
+        if (!repeticoes || repeticoes?.length === 0) {
             getRepeticoesData();
         }
-    }, [carregaRepeticao]);
+    }, []);
 
-    return { repeticoes, loading, setCarregaRepeticao };
+    return { repeticoes, loading  };
 };

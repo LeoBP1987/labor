@@ -16,10 +16,11 @@ const SectionEstilizado = styled.section`
     flex-direction: column;
     gap: 40px;
     @media screen and (max-width: 800px) {
-        margin-left: 35px;
+        margin: 15px 0;
         width: 100%;
         max-width: 100%;
         height: 525px;
+        max-height: 525px;
         align-items: center;
         justify-content: center;
         gap: 60px;

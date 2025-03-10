@@ -16,6 +16,9 @@ const InputAgendaEstilizado = styled.input`
     background: var(--cor-quintenaria);
     color: var(--cor-quintenaria);
     cursor: pointer;
+    @media screen and (max-width: 800px) {
+        background: #FFFFFF;
+    }
 `
 
 const BotaoAgenda = ({ onChange }: BotaoAgendaProps) => {

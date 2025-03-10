@@ -4,15 +4,17 @@ import ListaBotoes from "../../componentes/ListaBotoes"
 import ListaRepeticoes from "../../componentes/ListaRepeticoes"
 import { useChamaModal } from "../../hooks/useChamaModal"
 import { useDeleteRepeticoes } from "../../hooks/useDeleteRepeticoes"
+import { useGetRepeticoes } from "../../hooks/useGetRepeticoes"
 
 
 const Repeticoes = () => {
 
     const { aoChamarModal } = useChamaModal();
     const { deleteRepeticoesData, loading } = useDeleteRepeticoes();
+    const { repeticoes, loading: loadingRepeticoes } = useGetRepeticoes();
 
 
-    if(loading) {
+    if(loading || loadingRepeticoes) {
         return <div>Carregando...</div>
     }
 
@@ -27,7 +29,7 @@ const Repeticoes = () => {
 
     return (
         <ContainnerPadrao page="Repetições" botoes={botoes}>
-            <ListaRepeticoes />
+            <ListaRepeticoes repeticoes={repeticoes} />
         </ContainnerPadrao>
     )
 }

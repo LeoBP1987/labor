@@ -1,11 +1,11 @@
 import { useListaSelecionados } from "../context/ListaSelecionadosContext";
 import { useQuantidades } from "../context/QuantidadesContext";
 import { useRepeticoes } from "../context/RepeticoesContext";
-import { deleteRepeticoes } from "../services/repeticoesServices";
+import { deleteRepeticoes, getRepeticoes } from "../services/repeticoesServices";
 
 
 export const useDeleteRepeticoes = () => {
-    const { setCarregaRepeticao, loading, setLoading } = useRepeticoes();
+    const { loading, setLoading, setRepeticoes } = useRepeticoes();
     const { listaParaDeletar, setListaParaAtualizar, setListaParaDeletar } = useListaSelecionados();
     const { setCarregaQuantidades } = useQuantidades();
 
@@ -18,10 +18,12 @@ export const useDeleteRepeticoes = () => {
                 throw new Error("Erro ao deletar Repeticoes")
             }
 
+            const repticoes_atualizada = await getRepeticoes();
+            setRepeticoes(repticoes_atualizada);
+
             setListaParaAtualizar([]);
             setListaParaDeletar([]);
             setCarregaQuantidades(true);
-            setCarregaRepeticao(true);
             setLoading(false);
         } catch (error) {
             console.error('Erro ao deletar Repeticoes:', error);

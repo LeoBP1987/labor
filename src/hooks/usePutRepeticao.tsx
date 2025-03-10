@@ -1,10 +1,10 @@
 import { Dict } from "styled-components/dist/types";
 import { useRepeticoes } from "../context/RepeticoesContext";
-import { putRepeticoes } from "../services/repeticoesServices";
+import { getRepeticoes, putRepeticoes } from "../services/repeticoesServices";
 
 
 export const usePutRepeticoes = () => {
-    const { setCarregaRepeticao, setLoading, loading } = useRepeticoes();
+    const { setRepeticoes, setLoading, loading } = useRepeticoes();
     
     const putRepeticoesData = async (repeticao: Dict) => {
         try {
@@ -15,7 +15,9 @@ export const usePutRepeticoes = () => {
                 throw new Error("Erro ao atualizar Repetição")
             }
 
-            setCarregaRepeticao(true);
+            const repticoes_atualizada = await getRepeticoes();
+            setRepeticoes(repticoes_atualizada);
+
             setLoading(false);
         } catch (error) {
             console.error('Erro ao atualizar Repetições:', error);

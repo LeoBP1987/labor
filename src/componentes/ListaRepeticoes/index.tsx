@@ -2,9 +2,13 @@ import styled from 'styled-components'
 import icone_proximo from './icone_proximo.png'
 import icone_voltar from './icone_voltar.png'
 import { usePaginacaoTarefa } from '../../hooks/usePaginacaoTarefas'
-import { useGetRepeticoes } from '../../hooks/useGetRepeticoes'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ItemRepeticoes from './ItemRepeticao'
+import { Repeticoes } from '../../compartilhado/interfaces/IRepeticoes'
+
+interface ListaRepeticoesProps {
+    repeticoes: Repeticoes[] | [];
+}
 
 const DivContainerEstilizado = styled.div`
     display: flex;
@@ -57,46 +61,39 @@ const ParagrafoEstilizado = styled.p<{ $ativo: boolean }>`
     font-weight: ${props => props.$ativo ? '800' : '500'};
 `
 
-const ListaRepeticoes = () => {
+const ListaRepeticoes = ({repeticoes}: ListaRepeticoesProps) => {
 
-    const { repeticoes, setCarregaRepeticao } = useGetRepeticoes();
     const { paginaTarefas, irParaProximaPagina, irParaPaginaAnterior, paginacao, paginaAtual } = usePaginacaoTarefa(repeticoes);
     const [arrastando, setArrastando] = useState(false);
     const [ posicaoX, setPosicaoX ] = useState<number | null>(null);
     const [ distanciaArrastada, setDistanciaArrastada ] = useState<number | null>(null);
     
-        const aoIniciarArrasto = (e: React.TouchEvent<HTMLDivElement>) => {
-            setPosicaoX(e.touches[0].clientX);
-            setArrastando(true);
-        };
+    const aoIniciarArrasto = (e: React.TouchEvent<HTMLDivElement>) => {
+        setPosicaoX(e.touches[0].clientX);
+        setArrastando(true);
+    };
     
-        const aoArrastar = (e: React.TouchEvent<HTMLDivElement>) => {
+    const aoArrastar = (e: React.TouchEvent<HTMLDivElement>) => {
     
-            if(posicaoX === null) return;
+        if(posicaoX === null) return;
     
-            const posicaoAtual = e.changedTouches[0].clientX;
-            setDistanciaArrastada((posicaoAtual - posicaoX));
+        const posicaoAtual = e.changedTouches[0].clientX;
+        setDistanciaArrastada((posicaoAtual - posicaoX));
+    }
+    
+    const aoFinalizarArrasto = () => {
+        if (distanciaArrastada === null) return;        
+    
+        if (distanciaArrastada > 50) {
+            irParaPaginaAnterior();
+    
+        } else if (distanciaArrastada < -50) {
+            irParaProximaPagina();
         }
     
-        const aoFinalizarArrasto = () => {
-            if (distanciaArrastada === null) return;        
-    
-            if (distanciaArrastada > 50) {
-                irParaPaginaAnterior();
-    
-            } else if (distanciaArrastada < -50) {
-                irParaProximaPagina();
-            }
-    
-            setPosicaoX(null);
-            setArrastando(false);
-        };
-
-    useEffect(() => {
-        if (repeticoes.length === 0) {
-            setCarregaRepeticao(true);
-        }
-    }, []);
+        setPosicaoX(null);
+        setArrastando(false);
+    };
 
     if(!repeticoes.length) {
         return (
