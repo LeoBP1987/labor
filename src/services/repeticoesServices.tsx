@@ -138,3 +138,41 @@ export const putRepeticoes = async(repeticao: Dict) => {
         throw new Error("Erro ao atualizar repetições");
     }    
 };
+
+export const rodarRepeticoes = async(usuario: number, lista: Number[] = []) => {
+    const token = localStorage.getItem('token_acesso');
+
+    if ( !token) {
+        return null;
+    }
+
+    try {
+        const url = new URL('https://api-labor-5ee8ad3cd3aa.herokuapp.com/repeticoes/roda-repeticoes/');
+
+        url.searchParams.append('usuario', usuario.toString());
+
+        if (lista.length > 0) {
+            url.searchParams.append('lista', lista.join(','));
+        }
+
+        const response = await fetch(url.toString(), {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (response.status === 404) {
+            return null;
+        }
+        if (!response.ok) {
+            throw new Error(`Erro ao atualizar repetições: ${response.statusText}`);
+        }
+
+        return "Repetições executadas com Sucesso.";
+
+    } catch (error) {
+        console.error("Erro ao requisitar execução das repetições:", error);
+        throw new Error("Erro ao executar repetições");
+    }    
+}; 

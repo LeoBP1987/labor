@@ -5,11 +5,12 @@ import lixeira from './icones/icone-lixeira.png'
 import pilha from './icones/icone-pilha.png'
 import repeticao from './icones/icone-repeticao.png'
 import proxDia from './icones/icone-prox-dia.png'
+import iconeOn from './icones/icone-on.png'
 import styled from 'styled-components'
 import { Dict } from 'styled-components/dist/types'
 
 interface BotaoProps {
-    tipo: 'Pilha' | 'Agenda' | 'Concluida' | 'Repeticao' | 'Imediata' | 'DiaSeguinte' | 'Excluir';
+    tipo: 'Pilha' | 'Agenda' | 'Concluida' | 'Repeticao' | 'Imediata' | 'DiaSeguinte' | 'Excluir' | 'On';
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -20,7 +21,8 @@ const variaveis = {
     'Repeticao': {'corFundo':'var(--cor-quaternaria)', 'icone':repeticao},
     'Imediata': {'corFundo':'var(--cor-fonte-secundaria)', 'icone':imediata},
     'DiaSeguinte': {'corFundo':'var(--cor-setimaria)', 'icone':proxDia},
-    'Excluir': {'corFundo':'var(--cor-fonte-secundaria)', 'icone':lixeira}
+    'Excluir': {'corFundo':'var(--cor-fonte-secundaria)', 'icone':lixeira},
+    'On': {'corFundo':'var(--cor-fonte-secundaria)', 'icone':iconeOn}
 }
 
 const BotaoEstilizado = styled.button<{ $dados: Dict }>`

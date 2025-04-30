@@ -7,9 +7,9 @@ import { useDeleteTarefas } from "../../hooks/useDeleteTarefas";
 import { usePatchAgendamentoTarefas } from "../../hooks/usePatchAgendamentoTarefas";
 import BotaoAgenda from "../../componentes/BotaoData";
 import { useReagendaTarefasNaoFinalizadas } from "../../hooks/useReagendaTarefasNaoFinalizadas";
-import { useChecaSegunda } from "../../hooks/useChecaSegunda";
 import { useEffect } from "react";
 import { useUteis } from "../../context/UteisContext";
+import { useCarregaNovaSemana } from "../../hooks/useCarregaNovaSemana";
 
 const Inicio = () => {
 
@@ -17,17 +17,16 @@ const Inicio = () => {
     const { deleteTarefasData } = useDeleteTarefas();
     const { patchAgendamentoTarefasData } = usePatchAgendamentoTarefas();
     const { carregando } = useReagendaTarefasNaoFinalizadas();
-    const { loading: loadingChecaSegunda, checaSegunda } = useChecaSegunda();
-    const { checaSemana, setChecaSemana } = useUteis();    
+    const { checaSemana } = useUteis();
+    const { setCarregaSemana } = useCarregaNovaSemana();
 
     useEffect(() => {
         if(!checaSemana) {
-            setChecaSemana(true);
-            checaSegunda();
+            setCarregaSemana(true);
         }
     }, []);
 
-    if(loading || carregando || loadingChecaSegunda ) {
+    if(loading || carregando) {
         return <div>Carregando...</div>
     }
 
