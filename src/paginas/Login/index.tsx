@@ -114,7 +114,7 @@ const Login = () => {
                 <CampoTextoLogin value={usuario} onChange={(e) => setUsuario(e.target.value)} >Login</CampoTextoLogin>
                 <DivContainerSenha>
                     <CampoTextoLogin type={'password'} value={senha} onChange={(e) => setSenha(e.target.value)} >Senha</CampoTextoLogin>
-                    <LinkEstilizado>
+                    <LinkEstilizado onClick={() => aoChamarModal('recuperarSenha')}>
                         <ParagrafoEstilizado>esqueci a senha</ParagrafoEstilizado>
                     </LinkEstilizado>
                 </DivContainerSenha>

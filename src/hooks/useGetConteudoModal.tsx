@@ -5,6 +5,7 @@ import FormNovaTarefa from "../componentes/FormNovaTarefa";
 import Comentarios from "../componentes/Comentarios";
 import FormAlterarSenha from "../componentes/FormAlterarSenha";
 import FormaNovaRepeticao from "../componentes/FormNovaRepeticao";
+import FormRecuperarSenha from "../componentes/FormRecuperarSenha";
 
 export const useGetConteudoModal = () => {
 
@@ -31,6 +32,10 @@ export const useGetConteudoModal = () => {
             case 'novaRepeticao':
                 return (
                     <FormaNovaRepeticao />
+                )
+            case 'recuperarSenha':
+                return (
+                    <FormRecuperarSenha />
                 )
             default:
                 return <></>

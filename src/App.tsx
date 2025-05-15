@@ -11,6 +11,7 @@ import Semana from "./paginas/Semana";
 import MontarSemana from "./paginas/MontarSemana";
 import Repeticoes from "./paginas/Repeticoes";
 import Pesquisa from "./paginas/Pesquisa";
+import RecuperarSenha from "./paginas/RecuperarSenha";
 
 const PaginaBaseAutenticada = withAuth(PaginaBase)
 
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/recuperar-senha/:email" element={<RecuperarSenha />} />
           <Route path="/" element={<PaginaBaseAutenticada />}>
             <Route index element={<Inicio />}></Route>
             <Route path="/pilha" element={<Pilha />}></Route>

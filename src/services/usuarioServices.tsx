@@ -100,3 +100,55 @@ export const patchSenhaUsuario = async (password:string) => {
 
     return await response.json() as Promise<Usuario>;
 };
+
+export const recuperarSenha = async (email:string) => {
+    
+    const data = {
+        "email": email,
+    };
+
+    const response = await fetch(`https://api-labor-5ee8ad3cd3aa.herokuapp.com/recuperar-senha/recuperar-senha/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Erro ao alterar senha");
+    }
+
+    return await response.json();
+};
+
+export const alterarSenha = async (email:string, senha:string) => {
+    
+    if (!email) {
+        throw new Error("E-mail é obrigatório.");
+    }
+    if (!senha) {
+        throw new Error("Senha é obrigatória.");
+    }
+
+    const data = {
+        "email": email,
+        "senha": senha,
+    };
+
+    const response = await fetch(`https://api-labor-5ee8ad3cd3aa.herokuapp.com/alterar-senha/alterar-senha/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Erro ao alterar senha");
+    }
+
+    return await response.json();
+};

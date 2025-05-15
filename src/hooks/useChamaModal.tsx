@@ -5,7 +5,7 @@ import { ModalContext } from "../context/ModalContext"
 export const useChamaModal = () => {
     const modalContext = useContext(ModalContext);
 
-    const aoChamarModal = (conteudo: 'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao') => {
+    const aoChamarModal = (conteudo: 'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao' | 'recuperarSenha') => {
 
         modalContext?.setConteudo(conteudo)
 

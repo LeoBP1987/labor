@@ -4,8 +4,8 @@ import { useState, ReactNode } from "react";
 interface ModalContextType {
     visivel: 'flex' | 'none';
     setVisivel: React.Dispatch<React.SetStateAction<'none' | 'flex'>>;
-    conteudo: 'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao';
-    setConteudo: React.Dispatch<React.SetStateAction<'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao'>>
+    conteudo: 'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao' | 'recuperarSenha';
+    setConteudo: React.Dispatch<React.SetStateAction<'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao' | 'recuperarSenha'>>
 }
 
 
@@ -19,7 +19,7 @@ interface ModalProviderProps {
 
 export const ModalProvider = ( props:ModalProviderProps ) => {
     const [visivel, setVisivel] = useState<'none' | 'flex'>('none')
-    const [conteudo, setConteudo] = useState<'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao'>('none');
+    const [conteudo, setConteudo] = useState<'none' | 'cadastro' | 'comentario' | 'novaTarefa' | 'alterarSenha' | 'novaRepeticao' | 'recuperarSenha'>('none');
 
     return (
         <ModalContext.Provider
