@@ -23,14 +23,19 @@ const CabecalhoLogo = styled.img`
         transform: scale(1.1);
     }
 `
-const CabecalhoPesquisa = styled.input`
+const PesquisaWrapper = styled.div`
+    position: relative;
     width: 25rem;
+    height: 2rem;
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+`
+const CabecalhoPesquisa = styled.input`
+    width: 23rem;
     height: 2rem;
     border: 5px solid var(--cor-primaria);
     border-radius: 20px;
-    background-image: url(${lupa});
-    background-repeat: no-repeat;
-    background-position: 98% center;
     padding-left: 2rem;
     font-family: var(--fonte-primaria);
     color: var(--cor-fonte-primaria);
@@ -39,11 +44,16 @@ const CabecalhoPesquisa = styled.input`
         outline: none;
         border: 6px solid var(--cor-primaria);
     }
-
-    @media screen and (max-width: 800px) {
-        display: none;
-    }
 `
+const LupaImg = styled.img`
+    position: absolute;
+    right: 12px;
+    top: 60%;
+    transform: translateY(-50%);
+    width: 40px;
+    cursor: pointer;
+`
+
 const CabecalhoDiv = styled.div`
     display: none;
     @media screen and (max-width: 800px) {
@@ -84,7 +94,14 @@ const Cabecalho = () => {
                 <p>Arraste para baixo para acessar o menu</p>
             </CabecalhoDiv>
             <CabecalhoLogo src={logo} alt="Logo Marca do aplicativo Labor" />
-            <CabecalhoPesquisa value={pesquisa} onChange={(e) => setPesquisa(e.target.value)} onBlur={() => aoPesquisar()} />
+            <PesquisaWrapper>
+                <CabecalhoPesquisa
+                    value={pesquisa}
+                    onChange={(e) => setPesquisa(e.target.value)}
+                    onBlur={() => aoPesquisar()}
+                />
+                <LupaImg src={lupa} alt="Ícone de lupa" onClick={() => aoPesquisar()} />
+            </PesquisaWrapper>
         </CabecalhoContainer>
     )
 }
