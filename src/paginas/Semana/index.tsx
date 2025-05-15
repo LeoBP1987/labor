@@ -61,6 +61,7 @@ const Semana = () => {
     const { deleteTarefasData } = useDeleteTarefas();
     const { tarefasPorData, dataPesquisa, loading } = useGetTarefasPorData();
     const { dataFormatada } = useGetDataAtual();
+    const { setConsultando } = useGetTarefasPorData();
     
     const dataPesquisaDate = new Date(dataPesquisa!)
     const dataFormatadaDate = new Date(dataFormatada)
@@ -70,14 +71,29 @@ const Semana = () => {
         return <div>Carregando...</div>
     };
 
+    const aoClicarPilha = () => {
+        patchAgendamentoTarefasData("pilha", "semana")
+        setConsultando(true)
+    }
+
+    const aoClicarAgendamento = (e: React.ChangeEvent<HTMLInputElement>) => {
+        patchAgendamentoTarefasData(e.target.value, "semana")
+        setConsultando(true)
+    }
+
+    const aoClicarConcluida = () => {
+        deleteTarefasData("semana")
+        setConsultando(true)
+    }
+
     return (
         <SectionEstilizado>
             <DivEstilizado>
                 <ListaSemanaAtual />
                 <ListaBotoes>
-                    <Botao tipo={'Pilha'} onClick={() => patchAgendamentoTarefasData("pilha", "semana")}  />
-                    <BotaoAgenda onChange={(e) => patchAgendamentoTarefasData(e.target.value, "semana")} />
-                    <Botao tipo={'Concluida'} onClick={() => deleteTarefasData("semana")}  />
+                    <Botao tipo={'Pilha'} onClick={() => aoClicarPilha()}  />
+                    <BotaoAgenda onChange={(e) => aoClicarAgendamento(e)} />
+                    <Botao tipo={'Concluida'} onClick={() => aoClicarConcluida()}  />
                 </ListaBotoes>
             </DivEstilizado>
             {dataPassada && 
