@@ -27,6 +27,7 @@ const PesquisaWrapper = styled.div`
     position: relative;
     width: 25rem;
     height: 2rem;
+    margin-bottom: 1rem;
     @media screen and (max-width: 800px) {
         display: none;
     }
