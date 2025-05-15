@@ -7,6 +7,7 @@ import { useState } from "react"
 import { useChamaModal } from "../../hooks/useChamaModal"
 import { useGetDataAtual } from "../../hooks/useGetDataAtual"
 import BotaoAgenda from "../BotaoData"
+import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData"
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -54,6 +55,7 @@ const FormNovaTarefa = () => {
     const [descricao, setDescricao] = useState("");
     const { aoFecharModal } = useChamaModal();
     const { dataFormatada } = useGetDataAtual();
+    const { setConsultando } = useGetTarefasPorData();
 
     if(loading) {
         return <div>Carregando...</div>
@@ -63,17 +65,20 @@ const FormNovaTarefa = () => {
         await postTarefasData(descricao, "pilha", "9999-12-31");
         setDescricao("");
         aoFecharModal();
+        setConsultando(true);
     }
 
     const aoClicarHoje = async () => {
         await postTarefasData(descricao, "hoje", dataFormatada);
         setDescricao("");
         aoFecharModal();
+        setConsultando(true);
     }
 
     const aoClicarAgenda = async (data: string) => {
         await postTarefasData(descricao, "agenda", data);
         aoFecharModal();
+        setConsultando(true);
     }
 
     return (
