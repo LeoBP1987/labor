@@ -20,7 +20,7 @@ const InputAgendaEstilizado = styled.input`
         width: 34px;
         height: 38px;
         background: #FFFFFF url('/imagens/icones/calendario.png') no-repeat center;
-        background-size: 32px 32px;
+        background-size: 100% 100%;
     }
 `
 
