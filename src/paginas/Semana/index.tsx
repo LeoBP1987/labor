@@ -17,7 +17,7 @@ const SectionEstilizado = styled.section`
     flex-direction: column;
     gap: 40px;
     @media screen and (max-width: 800px) {
-        margin-left: 35px;
+        margin-left: 20px;
         width: 100%;
         min-height: 600px;
         align-items: center;
