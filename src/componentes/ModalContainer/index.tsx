@@ -23,8 +23,8 @@ const ModalContainerDiv = styled.div<{ $display: string }>`
         right: 50px;
         cursor: pointer;
         @media screen and (max-width: 800px) {
-            top: 150px;
-            right: 50px;
+            top: 120px;
+            right: 30px;
         }
     }
 `
