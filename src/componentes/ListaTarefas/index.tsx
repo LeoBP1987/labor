@@ -33,7 +33,7 @@ const ListaTarefasDiv = styled.div`
     gap: 40px;
     max-width: 100%;
     @media screen and (max-width: 800px) {
-        height: 221.25px;
+        height: 100%;
     }
 `
 
