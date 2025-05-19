@@ -15,6 +15,9 @@ const DivContainerEstilizado = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 40px;
+    @media screen and (max-width: 800px) {
+        gap: 20px;
+    }
 `
 
 const DivListaTarefasEstilizado = styled.div`
