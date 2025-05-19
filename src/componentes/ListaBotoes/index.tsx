@@ -11,6 +11,7 @@ const BotoesDiv = styled.div`
     gap: 20px;
     align-self: flex-end;
     @media screen and (max-width: 800px) {
+        margin: 0;
         align-self: center;
     }
 `
