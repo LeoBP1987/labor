@@ -17,7 +17,8 @@ const InputAgendaEstilizado = styled.input`
     color: var(--cor-quintenaria);
     cursor: pointer;
     @media screen and (max-width: 800px) {
-        background: #FFFFFF;
+        background: #FFFFFF url('./calendario.png') no-repeat right 6px center;
+        background-size: 22px 22px;
     }
 `
 
