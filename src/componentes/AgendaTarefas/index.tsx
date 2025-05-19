@@ -52,6 +52,9 @@ const DivPaginacaoEstilizado = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
+    @media screen and (max-width: 800px) {
+        margin-top: 1rem;
+    }
 `
 
 const ParagrafoEstilizado = styled.p<{ $ativo: boolean }>`
@@ -62,7 +65,7 @@ const ParagrafoEstilizado = styled.p<{ $ativo: boolean }>`
 const H3Estilizado = styled.h3`
     color: var(--cor-fonte-primaria);
     @media screen and (max-width: 800px){
-        margin: 0 0 0.2rem 0;
+        margin: 0 0 1rem 0;
         padding: 0;
     }
 `

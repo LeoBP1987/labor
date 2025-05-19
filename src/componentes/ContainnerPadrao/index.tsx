@@ -54,7 +54,7 @@ const ContainerDataEstilizado = styled.div`
     align-self: flex-end;
     @media screen and (max-width: 800px) {
         width: 100%;
-        margin: 0;
+        margin: 0 0 0 1rem;
         padding: 0;
         justify-content: center;
         align-items: center;
