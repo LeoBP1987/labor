@@ -15,7 +15,7 @@ const CampoDataEstilizado = styled.input`
     border-radius: 8px;
     color: var(--cor-fonte-primaria);
     @media screen and (max-width: 800px) {
-        width: 25%;
+        width: 40%;
     }
 `
 
