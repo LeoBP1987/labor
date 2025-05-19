@@ -5,7 +5,7 @@ interface ListaBotoesProps {
 }
 
 const BotoesDiv = styled.div`
-    margin: 0;
+    margin: 0 0 1rem 0;
     padding: 0;
     display: flex;
     gap: 20px;

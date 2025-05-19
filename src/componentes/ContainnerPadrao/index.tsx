@@ -47,7 +47,7 @@ const DivEstilizado = styled.div`
 `
 
 const ContainerDataEstilizado = styled.div`
-    margin: 0;
+    margin: 0 0 0.75rem 0;
     padding: 0;
     display: flex;
     gap: 20px;
