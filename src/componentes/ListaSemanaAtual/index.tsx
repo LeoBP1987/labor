@@ -17,7 +17,7 @@ const ListaSemanaEstilizada = styled.ul`
     justify-content: space-between;
     align-items: center;
     @media screen and (max-width: 800px) {
-        margin: 2rem 1.25rem 0 0;
+        margin: 2rem 1rem 0 0;
         width: 300px;
         height: 60px;
         padding: 10px 20px;
