@@ -92,7 +92,7 @@ const Cabecalho = () => {
     return (
         <CabecalhoContainer>
             <CabecalhoDiv>
-                <p>Arraste para baixo para acessar o menu</p>
+                <p>Arraste essa barra para baixo para ver o menu</p>
             </CabecalhoDiv>
             <CabecalhoLogo src={logo} alt="Logo Marca do aplicativo Labor" />
             <PesquisaWrapper>
