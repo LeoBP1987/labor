@@ -12,6 +12,7 @@ const H1Estilizado = styled.h1`
     font-size: 40px;
     color: var(--cor-fonte-primaria);
     @media screen and (max-width: 800px) {
+        margin-top: 2rem;
         font-size: 28px;
     }
 `
