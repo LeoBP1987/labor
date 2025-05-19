@@ -21,7 +21,7 @@ const DivContainerTarefa = styled.div`
 
 const InputEslizado = styled.input`
     position: relative;
-    width: 720px;
+    width: 580px;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -45,6 +45,25 @@ const CheckBoxEstilizado = styled.input`
 
 `
 
+const DiasRepeticao = styled.span`
+    margin-left: auto;
+    font-size: 0.6rem;
+    color: #888;
+    font-weight: 500;
+    letter-spacing: 1px;
+    white-space: nowrap;
+`
+
+const diasSemanaMap: { [key: number]: string } = {
+    1: "Seg",
+    2: "Ter",
+    3: "Qua",
+    4: "Qui",
+    5: "Sex",
+    6: "Sab",
+    7: "Dom"
+};
+
 const ItemRepeticoes = (props: ItemRepeticoesProps) => {
 
     const [readOnly, setReadOnly] = useState(true);
@@ -52,7 +71,7 @@ const ItemRepeticoes = (props: ItemRepeticoesProps) => {
     const { listaParaDeletar, setListaParaDeletar } = useListaSelecionados();
     const { putRepeticoesData, loading } = usePutRepeticoes();
 
-    if(loading) {
+    if (loading) {
         return <div>Carregando...</div>
     }
 
@@ -83,6 +102,17 @@ const ItemRepeticoes = (props: ItemRepeticoesProps) => {
         }));
     };
 
+    const dias = Array.isArray(repeticao.repeticoes)
+        ? [...repeticao.repeticoes].sort((a: number, b: number) => a - b)
+        : [];
+
+    let diasTexto = "";
+    if (dias.length === 7) {
+        diasTexto = "Todos os dias";
+    } else if (dias.length > 0) {
+        diasTexto = dias.map((num: number) => diasSemanaMap[num] || "").join(" - ");
+    }
+
     return (
         <ItemTarefaDiv>
             <DivContainerTarefa>
@@ -94,6 +124,9 @@ const ItemRepeticoes = (props: ItemRepeticoesProps) => {
                     onBlur={aoPerderFoco}
                     onChange={aoEditarRepeticao}
                 />
+                <DiasRepeticao>
+                    {diasTexto}
+                </DiasRepeticao>
             </DivContainerTarefa>
         </ItemTarefaDiv>
     )
