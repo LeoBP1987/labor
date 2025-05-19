@@ -33,7 +33,7 @@ const DivContainerBotoes = styled.div`
     margin-top: 80px;
     @media screen and (max-width: 800px) {
         margin-top: 40px;
-        gap: 10px;
+        gap: 40px;
     }
 `
 
