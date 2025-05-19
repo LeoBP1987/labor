@@ -19,10 +19,10 @@ const SectionEstilizado = styled.section`
     @media screen and (max-width: 800px) {
         margin-left: 35px;
         width: 100%;
-        height: 525px;
+        min-height: 525px;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 30px;
     }
 `
 
