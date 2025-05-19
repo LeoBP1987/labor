@@ -22,7 +22,7 @@ const SectionEstilizado = styled.section`
         height: 525px;
         align-items: center;
         justify-content: space-between;
-        gap: 60px;
+        gap: 20px;
     }
 `
 
