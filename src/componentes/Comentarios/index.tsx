@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { useTarefaAtiva } from "../../context/TarefaAtivaContext"
 import { usePutTarefas } from "../../hooks/usePutTarefa"
 import { Dict } from "styled-components/dist/types"
+import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData"
 
 const ContainerComentario = styled.div`
     display: flex;
@@ -34,6 +35,7 @@ const Comentarios = () => {
 
     const { tarefaAtiva, setTarefaAtiva } = useTarefaAtiva();
     const { putTarefasData } = usePutTarefas();
+    const { setConsultando } = useGetTarefasPorData();
 
     const aoEditarComentario = async (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTarefaAtiva((tarefa: Dict | null) => ({
@@ -44,6 +46,7 @@ const Comentarios = () => {
 
     const aoPerderFoco = async () => {
         await putTarefasData(tarefaAtiva!);
+        setConsultando(true);
     }
 
     return (
