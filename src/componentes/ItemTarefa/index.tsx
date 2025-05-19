@@ -57,9 +57,6 @@ const NotasDiv = styled.div<{ $tamanhoDescricao: number }>`
         left: ${props => `${props.$tamanhoDescricao}px`};
         cursor: pointer;
     }
-    @media screen and (max-width: 800px){
-        display: none;        
-    }
 `
 
 const ItemTarefa = (props: ItemTarefaProps) => {
@@ -149,8 +146,7 @@ const ItemTarefa = (props: ItemTarefaProps) => {
             <MenuContexto id={tarefa.id} display={menuContexto} tamanhoDescricao={tamanhoDescricao} onAdicionarComentario={onAdicionarComentario} />
             {tarefa.comentarios && <NotasDiv $tamanhoDescricao={tamanhoDescricao}>
                 <img src={notas} alt="Icone Notas" onClick={() => onAdicionarComentario()} />
-            </NotasDiv>
-            }
+            </NotasDiv>}
             <DivContainerTarefa>
                 <CheckBoxEstilizado type="checkbox" onChange={(e) => aoSelecionar(e)} />
                 <InputEslizado
