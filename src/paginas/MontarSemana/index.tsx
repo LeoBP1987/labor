@@ -5,6 +5,7 @@ import { useGetClique } from "../../context/GetClique"
 import { usePatchAgendamentoTarefaUnica } from "../../hooks/usePatchAgendamentoTarefaUnica"
 import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData"
 import { useEffect, useState } from "react"
+import BarraCarregamento from "../../componentes/BarraCarregamento"
 
 const ContainerMontarSemana = styled.div`
     width: 100%;
@@ -200,7 +201,7 @@ const MontarSemana = () => {
     }, [semanaSeguinte]);
 
     if (loading || carregando || loadingPorData || loadingReagendaTarefa) {
-        return <div>Carregando</div>
+        return <BarraCarregamento />
     }
 
     const nomeDiasMap = {

@@ -6,6 +6,7 @@ import Titulo from "../../componentes/Titulo";
 import { alterarSenha } from "../../services/usuarioServices";
 import EstilosGlobais from "../../componentes/EstilosGlobais";
 import { useParams } from "react-router-dom";
+import BarraCarregamento from "../../componentes/BarraCarregamento";
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -94,7 +95,7 @@ const RecuperarSenha = () => {
     };
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <BarraCarregamento />;
     }
 
     return (

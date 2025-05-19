@@ -6,6 +6,7 @@ import { useDeleteTarefas } from "../../hooks/useDeleteTarefas";
 import { usePatchAgendamentoTarefas } from "../../hooks/usePatchAgendamentoTarefas";
 import BotaoAgenda from "../../componentes/BotaoData";
 import AgendaTarefas from "../../componentes/AgendaTarefas";
+import BarraCarregamento from "../../componentes/BarraCarregamento";
 
 const Agenda = () => {
 
@@ -14,7 +15,7 @@ const Agenda = () => {
     const { patchAgendamentoTarefasData } = usePatchAgendamentoTarefas();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const botoes = (): React.ReactNode => {

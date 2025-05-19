@@ -1,3 +1,4 @@
+import BarraCarregamento from "../../componentes/BarraCarregamento"
 import Botao from "../../componentes/Botao"
 import ContainnerPadrao from "../../componentes/ContainnerPadrao"
 import ListaBotoes from "../../componentes/ListaBotoes"
@@ -20,7 +21,7 @@ const Repeticoes = () => {
 
 
     if(loading || loadingRepeticoes || loadingUsuario ) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const aoChamarOn = async () => {

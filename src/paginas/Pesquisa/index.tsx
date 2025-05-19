@@ -1,3 +1,4 @@
+import BarraCarregamento from "../../componentes/BarraCarregamento"
 import Botao from "../../componentes/Botao"
 import BotaoAgenda from "../../componentes/BotaoData"
 import ContainnerPadrao from "../../componentes/ContainnerPadrao"
@@ -15,7 +16,7 @@ const Pesquisa = () => {
     const { patchAgendamentoTarefasData } = usePatchAgendamentoTarefas();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const botoes = (): React.ReactNode => {

@@ -9,6 +9,7 @@ import ListaTarefas from "../../componentes/ListaTarefas";
 import { useGetDataAtual } from "../../hooks/useGetDataAtual";
 import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData";
 import { useEffect } from "react";
+import BarraCarregamento from "../../componentes/BarraCarregamento";
 
 const SectionEstilizado = styled.section`
     width: 800px;
@@ -73,7 +74,7 @@ const Semana = () => {
     }, []);
 
     if(loading || !dataPesquisa) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     };
 
     const dataPesquisaDate = new Date(dataPesquisa!)

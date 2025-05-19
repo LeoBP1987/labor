@@ -6,6 +6,7 @@ import ListaBotoes from "../../componentes/ListaBotoes";
 import { useDeleteTarefas } from "../../hooks/useDeleteTarefas";
 import BotaoAgenda from "../../componentes/BotaoData";
 import { usePatchAgendamentoTarefas } from "../../hooks/usePatchAgendamentoTarefas";
+import BarraCarregamento from "../../componentes/BarraCarregamento";
 
 const Pilha = () => {
 
@@ -14,7 +15,7 @@ const Pilha = () => {
     const { patchAgendamentoTarefasData } = usePatchAgendamentoTarefas();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const botoes = (): React.ReactNode => {

@@ -10,6 +10,7 @@ import { useReagendaTarefasNaoFinalizadas } from "../../hooks/useReagendaTarefas
 import { useEffect } from "react";
 import { useUteis } from "../../context/UteisContext";
 import { useCarregaNovaSemana } from "../../hooks/useCarregaNovaSemana";
+import BarraCarregamento from "../../componentes/BarraCarregamento";
 
 const Inicio = () => {
 
@@ -27,7 +28,7 @@ const Inicio = () => {
     }, []);
 
     if(loading || carregando) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const botoes = (): React.ReactNode => {

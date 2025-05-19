@@ -8,6 +8,7 @@ import { useState } from "react"
 import { useChamaModal } from "../../hooks/useChamaModal"
 import ModalContainer from "../../componentes/ModalContainer"
 import CampoTextoLogin from "../../componentes/CampoTextoLogin"
+import BarraCarregamento from "../../componentes/BarraCarregamento"
 
 const ContainerLogin = styled.div`
   margin-top: 100px;
@@ -96,7 +97,12 @@ const Login = () => {
     const { aoChamarModal } = useChamaModal();
 
     if (loading) {
-        return <div>Carregando...</div>
+        return (
+            <>
+                <EstilosGlobais />
+                <BarraCarregamento />
+            </>
+        ) 
     }
 
     const aoLogar = async (evento: React.FormEvent) => {
