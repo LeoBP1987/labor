@@ -19,7 +19,7 @@ const TextAreaEstilizado = styled.textarea`
     overflow: scroll;
     padding: 0.5rem;
     @media screen and (max-width: 800px) {
-        width: 90%;
+        width: 100%;
     }
 `
 
