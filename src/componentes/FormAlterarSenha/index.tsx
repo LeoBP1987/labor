@@ -5,6 +5,7 @@ import CampoTexto from "../CampoTexto"
 import Titulo from "../Titulo"
 import { usePatchUsuario } from "../../hooks/usePatchUsuario"
 import { useChamaModal } from "../../hooks/useChamaModal"
+import BarraCarregamento from "../BarraCarregamento"
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -30,6 +31,10 @@ const DivContainerBotoes = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
+    @media screen and (max-width: 800px) {
+        margin-top: 40px;
+        gap: 10px;
+    }
 `
 
 
@@ -41,7 +46,7 @@ const FormAlterarSenha = () => {
     const { aoFecharModal } = useChamaModal();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
     
     const aoReset = () => {
