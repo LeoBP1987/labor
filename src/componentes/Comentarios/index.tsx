@@ -18,6 +18,9 @@ const TextAreaEstilizado = styled.textarea`
     box-shadow: 0 4px 4px rgb(100, 79, 232);
     overflow: scroll;
     padding: 0.5rem;
+    @media screen and (max-width: 800px) {
+        width: 90%;
+    }
 `
 
 const H4Estilizado = styled.h4`
