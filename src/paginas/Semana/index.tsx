@@ -8,6 +8,7 @@ import { useDeleteTarefas } from "../../hooks/useDeleteTarefas";
 import ListaTarefas from "../../componentes/ListaTarefas";
 import { useGetDataAtual } from "../../hooks/useGetDataAtual";
 import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData";
+import { useEffect } from "react";
 
 const SectionEstilizado = styled.section`
     width: 800px;
@@ -59,17 +60,29 @@ const Semana = () => {
 
     const { patchAgendamentoTarefasData } = usePatchAgendamentoTarefas();
     const { deleteTarefasData } = useDeleteTarefas();
-    const { tarefasPorData, dataPesquisa, loading } = useGetTarefasPorData();
+    const { tarefasPorData, dataPesquisa, setDataPesquisa, loading } = useGetTarefasPorData();
     const { dataFormatada } = useGetDataAtual();
     const { setConsultando } = useGetTarefasPorData();
-    
+
+    useEffect(() => {
+        if (!dataPesquisa) {
+            const hoje = new Date().toISOString().split('T')[0];
+            setDataPesquisa(hoje);
+            setConsultando(true); 
+        }
+    }, []);
+
+    if(loading || !dataPesquisa) {
+        return <div>Carregando...</div>
+    };
+
     const dataPesquisaDate = new Date(dataPesquisa!)
     const dataFormatadaDate = new Date(dataFormatada)
     const dataPassada = (dataPesquisaDate < dataFormatadaDate)
 
-    if(loading) {
-        return <div>Carregando...</div>
-    };
+    console.log(dataPesquisa)
+    console.log(dataFormatada)
+    console.log(dataPassada)
 
     const aoClicarPilha = () => {
         patchAgendamentoTarefasData("pilha", "semana")
@@ -96,17 +109,16 @@ const Semana = () => {
                     <Botao tipo={'Concluida'} onClick={() => aoClicarConcluida()}  />
                 </ListaBotoes>
             </DivEstilizado>
+            {!dataPassada && 
+                           <ListaTarefas tarefas={tarefasPorData} />
+            }
             {dataPassada && 
                             <ListaTarefasDiv>
                                 <div>
                                     As tarefas não realizadas em dias passados são automático enviada para a Pilha.
                                 </div>
                             </ListaTarefasDiv>
-                            }
-            {!dataPassada && 
-                           <ListaTarefas tarefas={tarefasPorData} />
-                            }
-            
+            }
         </SectionEstilizado>
     )
 };

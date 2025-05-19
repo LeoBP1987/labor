@@ -100,7 +100,10 @@ const ListaSemanaAtual = () => {
         return <div>Erro ao gerar semana</div>
     }
 
-    const aoSelecionarDia = async (dia: string, nome_dia: string) => {
+    const aoSelecionarDia = async (
+        dia: string,
+        nome_dia: "segunda" | "terca" | "quarta" | "quinta" | "sexta" | "sabado" | "domingo"
+    ) => {
         setDiaClicado(nome_dia);
         if(dia) {
             setDataPesquisa(dia);

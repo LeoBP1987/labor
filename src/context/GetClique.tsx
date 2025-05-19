@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import { useState, ReactNode } from "react";
 
 interface GetCliqueContextType {
-    diaClicado: string;
-    setDiaClicado: (loading: string) => void;
+    diaClicado: 'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo';
+    setDiaClicado: (dia: 'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo') => void;
     diaClicadoSemanaSeguinte: 'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo';
     setDiaClicadoSemanaSeguinte: (diaClicadoSemanaSeguinte: 'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo') => void;
     menuAtivo: string;
@@ -19,8 +19,12 @@ interface GetCliqueProviderProps {
     children: ReactNode;
 };
 
-export const GetCliqueProvider = ( props:GetCliqueProviderProps ) => {
-    const [diaClicado, setDiaClicado] = useState('segunda');
+export const GetCliqueProvider = (props: GetCliqueProviderProps) => {
+    const diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+    const hoje = diasSemana[new Date().getDay()] as
+        | 'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo';
+
+    const [diaClicado, setDiaClicado] = useState(hoje);
     const [menuAtivo, setMenuAtivo] = useState('hoje');
     const [diaClicadoSemanaSeguinte, setDiaClicadoSemanaSeguinte] = useState<'segunda' | 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado' | 'domingo'>('segunda');
 

@@ -45,8 +45,8 @@ const Comentarios = () => {
     }
 
     const aoPerderFoco = async () => {
-        await putTarefasData(tarefaAtiva!);
         setConsultando(true);
+        await putTarefasData(tarefaAtiva!);
     }
 
     return (
