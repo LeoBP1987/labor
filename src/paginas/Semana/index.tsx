@@ -40,7 +40,7 @@ const DivEstilizado = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
     }
 `
 
