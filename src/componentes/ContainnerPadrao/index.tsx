@@ -42,7 +42,7 @@ const DivEstilizado = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
     }
 `
 
@@ -54,6 +54,8 @@ const ContainerDataEstilizado = styled.div`
     align-self: flex-end;
     @media screen and (max-width: 800px) {
         width: 100%;
+        margin: 0;
+        padding: 0;
         justify-content: center;
         align-items: center;
         align-self: center;
