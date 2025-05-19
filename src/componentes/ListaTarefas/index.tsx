@@ -16,7 +16,7 @@ const DivContainerEstilizado = styled.div`
     align-items: center;
     gap: 40px;
     @media screen and (max-width: 800px) {
-        gap: 20px;
+        gap: 10px;
     }
 `
 
