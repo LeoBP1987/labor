@@ -19,6 +19,7 @@ const DivContainer = styled.div`
     border-radius: 20px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
     @media screen and (max-width: 800px) {
+        width: 90%;
         padding: 1rem;
     }
 `
