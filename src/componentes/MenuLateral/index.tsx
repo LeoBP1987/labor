@@ -4,7 +4,7 @@ import useLogoff from "../../hooks/useLogoff";
 import { useChamaModal } from "../../hooks/useChamaModal";
 import { useGetClique } from "../../context/GetClique";
 import { useGetQuantidades } from "../../hooks/useGetQuantidades";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MenuAside = styled.aside<{ $altura: number }>`
   @media screen and (max-width: 800px) {
@@ -98,41 +98,46 @@ const MenuLateral = () => {
   const [arrastando, setArrastando] = useState(false);
   const [menuMobileAtivo, setMenuMobileAtivo] = useState(false);
   const [concluido, setConcluido] = useState('none');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 800);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const aoIniciarArrasto = (e: React.TouchEvent<HTMLElement>) => {
     if (!menuMobileAtivo) {
       setPosicaoY(e.touches[0].clientY);
       setArrastando(true);
     }
-};
+  };
 
-const aoArrastar = (e: React.TouchEvent<HTMLElement>) => {
-  const posicaoAtual = e.touches[0].clientY;
-  const distancia = posicaoAtual - posicaoY;
+  const aoArrastar = (e: React.TouchEvent<HTMLElement>) => {
+    const posicaoAtual = e.touches[0].clientY;
+    const distancia = posicaoAtual - posicaoY;
+    setDistanciaArrastada(distancia);
+  };
 
-  setDistanciaArrastada(distancia);
-    
-};
-
-const aoFinalizarArrasto = () => {
+  const aoFinalizarArrasto = () => {
     if (distanciaArrastada < 200) {
-        setDistanciaArrastada(0);
+      setDistanciaArrastada(0);
     } else {
-        setDistanciaArrastada(500);
-        setMenuMobileAtivo(true);
-        setConcluido('flex');
+      setDistanciaArrastada(500);
+      setMenuMobileAtivo(true);
+      setConcluido('flex');
     }
     setArrastando(false);
-};
+  };
 
-const aoFecharMenu = (evento: React.MouseEvent<HTMLButtonElement>) => {
+  const aoFecharMenu = (evento: React.MouseEvent<HTMLButtonElement>) => {
     if (evento.clientY > 630 || evento.clientX < 60 || evento.clientX > 360) {
-        setPosicaoY(0);
-        setDistanciaArrastada(0);
-        setMenuMobileAtivo(false);
-        setConcluido('none');
+      setPosicaoY(0);
+      setDistanciaArrastada(0);
+      setMenuMobileAtivo(false);
+      setConcluido('none');
     }
-};
+  };
 
   const mudaAtivo = (item: string) => {
     setMenuAtivo(item)
@@ -157,97 +162,99 @@ const aoFecharMenu = (evento: React.MouseEvent<HTMLButtonElement>) => {
     >
       <MenuListaContainer $altura={distanciaArrastada}>
         <MenuListaAcesso $concluido={concluido}>
-          <ItemMenu 
-                  ativo={menuAtivo === "Hoje"}
-                  fixo={0} 
-                  quantidadeTarefa={quantidades.tarefasHoje} 
-                  link="/" 
-                  onClick={() => mudaAtivo("Hoje")}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={menuAtivo === "Hoje"}
+            fixo={0}
+            quantidadeTarefa={quantidades.tarefasHoje}
+            link="/"
+            onClick={() => mudaAtivo("Hoje")}
+            distanciaArrastada={distanciaArrastada}
           >
             Hoje
           </ItemMenu>
-          <ItemMenu 
-                  ativo={menuAtivo === "Semana"}
-                  fixo={0}
-                  quantidadeTarefa={quantidades.tarefasSemana}
-                  link="/semana"
-                  onClick={() => mudaAtivo("Semana")}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={menuAtivo === "Semana"}
+            fixo={0}
+            quantidadeTarefa={quantidades.tarefasSemana}
+            link="/semana"
+            onClick={() => mudaAtivo("Semana")}
+            distanciaArrastada={distanciaArrastada}
           >
             Semana
           </ItemMenu>
-          <ItemMenu 
-                  ativo={menuAtivo === "Pilha"}
-                  fixo={0}
-                  quantidadeTarefa={quantidades.tarefasPilha} 
-                  link="/pilha"
-                  onClick={() => mudaAtivo("Pilha")}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={menuAtivo === "Pilha"}
+            fixo={0}
+            quantidadeTarefa={quantidades.tarefasPilha}
+            link="/pilha"
+            onClick={() => mudaAtivo("Pilha")}
+            distanciaArrastada={distanciaArrastada}
           >
             Pilha
           </ItemMenu>
-          <ItemMenu 
-                  ativo={menuAtivo === "Repeticao"} 
-                  fixo={0}
-                  quantidadeTarefa={quantidades.repeticoes}
-                  link="/repeticoes"
-                  onClick={() => mudaAtivo("Repeticao")}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={menuAtivo === "Repeticao"}
+            fixo={0}
+            quantidadeTarefa={quantidades.repeticoes}
+            link="/repeticoes"
+            onClick={() => mudaAtivo("Repeticao")}
+            distanciaArrastada={distanciaArrastada}
           >
             Repetições
           </ItemMenu>
         </MenuListaAcesso>
         <MenuListaUteis $concluido={concluido}>
-          <ItemMenu 
-                  ativo={false} 
-                  fixo={null}
-                  quantidadeTarefa={null} 
-                  link="/agenda"
-                  onClick={() => setDistanciaArrastada(0)}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={false}
+            fixo={null}
+            quantidadeTarefa={null}
+            link="/agenda"
+            onClick={() => setDistanciaArrastada(0)}
+            distanciaArrastada={distanciaArrastada}
           >
             Agenda
           </ItemMenu>
-          <ItemMenu 
-                  ativo={false} 
-                  fixo={null}
-                  quantidadeTarefa={null} 
-                  link="#" 
-                  onClick={() => aoClicarNovaTarefa()}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={false}
+            fixo={null}
+            quantidadeTarefa={null}
+            link="#"
+            onClick={() => aoClicarNovaTarefa()}
+            distanciaArrastada={distanciaArrastada}
           >
             Nova Tarefa
           </ItemMenu>
-          <ItemMenu 
-                  ativo={false} 
-                  fixo={null}
-                  quantidadeTarefa={null} 
-                  link="/montarsemana"
-                  onClick={() => setDistanciaArrastada(0)}
-                  distanciaArrastada={distanciaArrastada}
-          >
-            Montar Semana
-          </ItemMenu>
-          <ItemMenu 
-                  ativo={false} 
-                  fixo={null}
-                  quantidadeTarefa={null} 
-                  link="/configuracoes"
-                  onClick={() => setDistanciaArrastada(0)}
-                  distanciaArrastada={distanciaArrastada}
+          {!isMobile && (
+            <ItemMenu
+              ativo={false}
+              fixo={null}
+              quantidadeTarefa={null}
+              link="/montarsemana"
+              onClick={() => setDistanciaArrastada(0)}
+              distanciaArrastada={distanciaArrastada}
+            >
+              Montar Semana
+            </ItemMenu>
+          )}
+          <ItemMenu
+            ativo={false}
+            fixo={null}
+            quantidadeTarefa={null}
+            link="/configuracoes"
+            onClick={() => setDistanciaArrastada(0)}
+            distanciaArrastada={distanciaArrastada}
           >
             Configurações
           </ItemMenu>
         </MenuListaUteis>
         <MenuDiv $concluido={concluido}>
-          <ItemMenu 
-                  ativo={false} 
-                  fixo={null}
-                  quantidadeTarefa={null} 
-                  link="/login" 
-                  onClick={() => logoff()}
-                  distanciaArrastada={distanciaArrastada}
+          <ItemMenu
+            ativo={false}
+            fixo={null}
+            quantidadeTarefa={null}
+            link="/login"
+            onClick={() => logoff()}
+            distanciaArrastada={distanciaArrastada}
           >
             Sair
           </ItemMenu>
