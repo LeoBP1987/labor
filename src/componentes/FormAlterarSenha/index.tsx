@@ -19,7 +19,7 @@ const DivContainer = styled.div`
     border-radius: 20px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
     @media screen and (max-width: 800px) {
-        width: 90%;
+        width: 80%;
         padding: 1rem;
     }
 `
@@ -37,7 +37,7 @@ const DivContainerBotoes = styled.div`
     margin-top: 80px;
     @media screen and (max-width: 800px) {
         margin-top: 40px;
-        gap: 40px;
+        gap: 20px;
     }
 `
 
