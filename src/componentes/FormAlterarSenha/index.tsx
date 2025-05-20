@@ -18,6 +18,9 @@ const DivContainer = styled.div`
     padding: 2rem 4rem 3rem 4rem;
     border-radius: 20px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+    @media screen and (max-width: 800px) {
+        padding: 1rem;
+    }
 `
 
 const FormEstilizado = styled.form`
