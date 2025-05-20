@@ -232,7 +232,7 @@ const ComoUsar = () => (
             <b>Vídeo Demonstração</b>
         </TextoVideo>
         <VideoWrapper>
-            <iframe width="803" height="451" src="https://www.youtube.com/embed/rydm8mk0f9E" title="TesteLabor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            <iframe width="803" height="451" src="https://www.youtube.com/embed/71fgWIpIa8Q" title="TesteLabor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
         </VideoWrapper>
     </Container>
 );
