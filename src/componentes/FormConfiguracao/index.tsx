@@ -36,7 +36,7 @@ const DivContainerBotoes = styled.div`
     justify-content: space-between;
     margin-top: 80px;
     @media screen and (max-width: 800px){
-        margin-top: 30px;
+        margin-top: 25px;
         width: 102.5%;
     }
 `
