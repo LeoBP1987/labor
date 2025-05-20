@@ -12,6 +12,7 @@ import MontarSemana from "./paginas/MontarSemana";
 import Repeticoes from "./paginas/Repeticoes";
 import Pesquisa from "./paginas/Pesquisa";
 import RecuperarSenha from "./paginas/RecuperarSenha";
+import ComoUsar from "./paginas/ComoUsar";
 
 const PaginaBaseAutenticada = withAuth(PaginaBase)
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/montarsemana" element={<MontarSemana />} />
             <Route path="/repeticoes" element={<Repeticoes />} />
             <Route path="/pesquisa" element={<Pesquisa />} />
+            <Route path="/como-usar" element={<ComoUsar />} />
           </Route>
         </Routes>
       </BrowserRouter>

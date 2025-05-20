@@ -246,6 +246,16 @@ const MenuLateral = () => {
           >
             Configurações
           </ItemMenu>
+          <ItemMenu
+            ativo={false}
+            fixo={null}
+            quantidadeTarefa={null}
+            link="/como-usar"
+            onClick={() => setDistanciaArrastada(0)}
+            distanciaArrastada={distanciaArrastada}
+          >
+            Como Usar
+          </ItemMenu>
         </MenuListaUteis>
         <MenuDiv $concluido={concluido}>
           <ItemMenu
