@@ -6,6 +6,7 @@ import { Usuario } from "../../compartilhado/interfaces/IUsuario"
 import { usePatchUsuario } from "../../hooks/usePatchUsuario"
 import { useGetUsuario } from "../../hooks/useGetUsuario"
 import { useChamaModal } from "../../hooks/useChamaModal"
+import BarraCarregamento from "../BarraCarregamento"
 
 const DivContainer = styled.div`
     display: flex;
@@ -16,6 +17,8 @@ const DivContainer = styled.div`
     border-radius: 20px;
     @media screen and (max-width: 800px){
         padding: 0;
+        height: 100%;
+        width: 100%;
     }
 `
 
@@ -46,7 +49,7 @@ const FormConfiguracao = () => {
     const { aoChamarModal } = useChamaModal();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const aoClicarEditar = () => {
