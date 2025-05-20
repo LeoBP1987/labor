@@ -28,7 +28,7 @@ O FrontEnd deste projeto consome a API do [api-labor](https://github.com/LeoBP19
 ## 🖼️ Funcionalidades
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/3369400/233833120-f6f2c6af-fad5-4b66-959d-2104d23f9f9b.png" alt="Funcionalidades" width="60%"/>
+  <img src="https://github.com/user-attachments/assets/1bb405c9-1cf8-4795-8e97-c9028c0fb040" alt="Funcionalidades" width="20%"/>
 </div>
 
 - **Visualização semanal das tarefas**
