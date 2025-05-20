@@ -8,6 +8,7 @@ import { useChamaModal } from "../../hooks/useChamaModal"
 import { useGetDataAtual } from "../../hooks/useGetDataAtual"
 import BotaoAgenda from "../BotaoData"
 import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData"
+import BarraCarregamento from "../BarraCarregamento"
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -58,7 +59,7 @@ const FormNovaTarefa = () => {
     const { setConsultando } = useGetTarefasPorData();
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     const aoClicarPilha = async () => {

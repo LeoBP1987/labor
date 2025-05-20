@@ -7,6 +7,7 @@ import { useRepeticoes } from "../../context/RepeticoesContext"
 import { usePostRepeticoes } from "../../hooks/usePostRepeticoes"
 import { useState } from "react"
 import { useChamaModal } from "../../hooks/useChamaModal"
+import BarraCarregamento from "../BarraCarregamento"
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -97,7 +98,7 @@ const FormaNovaRepeticao = () => {
     }
 
     if(loading) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     return (

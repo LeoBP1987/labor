@@ -3,6 +3,7 @@ import { useGetSemanaAtual } from "../../hooks/useGetSemanaAtual"
 import { useGetTarefasPorData } from "../../hooks/useGetTarefasPorData"
 import { useGetClique } from "../../context/GetClique"
 import { useEffect } from "react"
+import BarraCarregamento from "../BarraCarregamento"
 
 
 const ListaSemanaEstilizada = styled.ul`
@@ -93,7 +94,7 @@ const ListaSemanaAtual = () => {
     }, []);
 
     if(carregando) {
-        return <div>Carregando...</div>
+        return <BarraCarregamento />
     }
 
     if(!semanaAtual) {

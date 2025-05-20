@@ -5,6 +5,7 @@ import CampoTexto from "../CampoTexto";
 import Titulo from "../Titulo";
 import { recuperarSenha } from "../../services/usuarioServices";
 import { useChamaModal } from "../../hooks/useChamaModal";
+import BarraCarregamento from "../BarraCarregamento";
 
 const DivContainer = styled.div`
     max-height: 80%;
@@ -17,6 +18,10 @@ const DivContainer = styled.div`
     padding: 2rem 4rem 3rem 4rem;
     border-radius: 20px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+    @media screen and (max-width: 800px) {
+        width: 80%;
+        padding: 1rem;
+    }
 `;
 
 const FormEstilizado = styled.form`
@@ -31,6 +36,10 @@ const DivContainerBotoes = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
+    @media screen and (max-width: 800px) {
+        margin-top: 40px;
+        gap: 20px;
+    }
 `;
 
 const FormRecuperarSenha = () => {
@@ -61,7 +70,7 @@ const FormRecuperarSenha = () => {
     };
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <BarraCarregamento />;
     }
 
     return (

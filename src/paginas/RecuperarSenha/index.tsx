@@ -21,6 +21,10 @@ const DivContainer = styled.div`
     border-radius: 20px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
     justify-self: center;
+    @media screen and (max-width: 800px) {
+        width: 80%;
+        padding: 1rem;
+    }
 `;
 
 const FormEstilizado = styled.form`
@@ -35,6 +39,10 @@ const DivContainerBotoes = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
+    @media screen and (max-width: 800px) {
+        margin-top: 40px;
+        gap: 20px;
+    }
 `;
 
 const MensagemSucesso = styled.p`
