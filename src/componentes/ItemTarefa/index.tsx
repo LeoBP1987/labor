@@ -57,6 +57,21 @@ const NotasDiv = styled.div<{ $tamanhoDescricao: number }>`
         left: ${props => `${props.$tamanhoDescricao}px`};
         cursor: pointer;
     }
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+`
+
+const NotasMobile = styled.img`
+    display: none;
+    @media screen and (max-width: 800px) {
+        display: inline;
+        position: static;
+        width: 22px;
+        height: 22px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
 `
 
 const ItemTarefa = (props: ItemTarefaProps) => {
@@ -132,7 +147,7 @@ const ItemTarefa = (props: ItemTarefaProps) => {
         const MenuContexto = document.getElementById(`${tarefa.id}`);
         if (elementoFocado !== MenuContexto) {
             fecharMenuContexto();
-        } 
+        }
     };
 
     const onAdicionarComentario = () => {
@@ -141,14 +156,29 @@ const ItemTarefa = (props: ItemTarefaProps) => {
         fecharMenuContexto();
     }
 
+    // Detecta se é mobile
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 800);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
         <ItemTarefaDiv onContextMenu={aoClicarMenuContexto} onBlur={(e) => aoSairFocoTarefa(e)}>
             <MenuContexto id={tarefa.id} display={menuContexto} tamanhoDescricao={tamanhoDescricao} onAdicionarComentario={onAdicionarComentario} />
-            {tarefa.comentarios && <NotasDiv $tamanhoDescricao={tamanhoDescricao}>
-                <img src={notas} alt="Icone Notas" onClick={() => onAdicionarComentario()} />
-            </NotasDiv>}
+            {/* Ícone no final (desktop) */}
+            {tarefa.comentarios && !isMobile && (
+                <NotasDiv $tamanhoDescricao={tamanhoDescricao}>
+                    <img src={notas} alt="Icone Notas" onClick={() => onAdicionarComentario()} />
+                </NotasDiv>
+            )}
             <DivContainerTarefa>
                 <CheckBoxEstilizado type="checkbox" onChange={(e) => aoSelecionar(e)} />
+                {/* Ícone no início (mobile) */}
+                {tarefa.comentarios && isMobile && (
+                    <NotasMobile src={notas} alt="Icone Notas" onClick={() => onAdicionarComentario()} />
+                )}
                 <InputEslizado
                     value={tarefa.descricao}
                     readOnly={readOnly}
