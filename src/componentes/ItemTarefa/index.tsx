@@ -56,6 +56,8 @@ const NotasDiv = styled.div<{ $tamanhoDescricao: number }>`
         bottom: 10px;
         left: ${props => `${props.$tamanhoDescricao}px`};
         cursor: pointer;
+        width: 22px;
+        height: 22px;
     }
     @media screen and (max-width: 800px) {
         display: none;
@@ -64,12 +66,12 @@ const NotasDiv = styled.div<{ $tamanhoDescricao: number }>`
 
 const NotasMobile = styled.img`
     display: none;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
     @media screen and (max-width: 800px) {
         display: inline;
-        position: static;
-        width: 22px;
-        height: 22px;
-        margin-right: 8px;
+        align-self: center;
         vertical-align: middle;
     }
 `
