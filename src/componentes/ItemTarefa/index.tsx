@@ -66,7 +66,7 @@ const NotasMobile = styled.img`
     display: none;
     @media screen and (max-width: 800px) {
         display: inline;
-        position: static;
+        position: absolute;
         margin-right: 8px;
         vertical-align: middle;
     }
