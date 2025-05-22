@@ -65,10 +65,9 @@ const NotasDiv = styled.div<{ $tamanhoDescricao: number }>`
 const NotasMobile = styled.img`
     display: none;
     @media screen and (max-width: 800px) {
-        display: inline;
         position: absolute;
-        margin-right: 8px;
-        vertical-align: middle;
+        display: block;
+        left: 10px;
     }
 `
 
